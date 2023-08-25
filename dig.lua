@@ -48,25 +48,37 @@ function goZ(x,y,z)
         end 
     end
 end
+function goY(x,y,z)
+    local x1,y1,z1 = gps.locate()
+    while(y ~= y1) do
+        if(y - y1 > 0) then
+            turtle.up()
+        end
+        if(y - y1 < 0) then
+            turtle.up()
+        end
+        x1,y1,z1 = gps.locate()
+    end
+end
 function goToStart(x,y,z)
    local x1,y1,z1 = gps.locate()
    if x1 == x and y1 == y and z1 == z then
         print("Here")
    else
+
+
+
+
+
         goX(x,y,z)
-        while(x ~= x1) do
+        while(x ~= x1 and turtle.forward()) do
             turtle.forward()
             x1,y1,z1 = gps.locate()
-        end
-        while(y ~= y1) do
-            if(y - y1 > 0) then
-                turtle.up()
+            if(not turtle.forward()) then
+            goY(x,y,z)
             end
-            if(y - y1 < 0) then
-                turtle.up()
-            end
-            x1,y1,z1 = gps.locate()
         end
+        goY(x,y,z)
         goZ(x,y,z)
         while(z ~= z1) do
             turtle.forward()
