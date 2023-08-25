@@ -23,7 +23,7 @@ function goX(x,y,z)
         turtle.forward()
         x2,y2,z2 = gps.locate()
     end
-    if( math.abs(x - x1) < nath.abs(x - x2)) then
+    if( math.abs(x - x1) < math.abs(x - x2)) then
         turtle.turnLeft()
         turtle.turnLeft()
     end 
