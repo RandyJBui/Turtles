@@ -23,16 +23,26 @@ function refill(dimX,dimY,dimZ)
 end
 function segment()
     local a,b,c = gps.locate()
+    toggle = false
     for i=0,x-1,1 do
         for j=0,z-1,1 do
             a,b,c = gps.locate()
             Turt.mine()
             turtle.forward()
         end
-        turtle.turnLeft()
-        turtle.mine()
-        turtle.forward()
-        turtle.turnLeft()
+        if toggle then 
+            turtle.turnLeft()
+            turtle.mine()
+            turtle.forward()
+            turtle.turnLeft()
+            toggle = false
+        else
+            turtle.turnRight()
+            turtle.mine()
+            turtle.forward()
+            turtle.turnRight()
+            toggle = true
+        end
     end
 end
 
