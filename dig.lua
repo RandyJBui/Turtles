@@ -57,6 +57,7 @@ function goToStart(x,y,z)
         if(y - y1 < 0) then
             turtle.up()
         end
+        x1,y1,z1 = gps.locate()
     end
     goZ(x,y,z)
     while(z ~= z1) do
