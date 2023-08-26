@@ -1,17 +1,18 @@
-function mine()
+Turt = {}
+
+function Turt.mine()
     while(turtle.detect()) do
         turtle.dig()
     end
 end
 
 
-function needFuel()
+function Turt.needFuel()
     if(turtle.getFuelLevel() < 800) then
         return true
     else
         return false
     end
-
 end
 function goX(x,y,z)
     local x1,y1,z1 = gps.locate()
@@ -60,16 +61,11 @@ function goY(x,y,z)
         x1,y1,z1 = gps.locate()
     end
 end
-function goToStart(x,y,z)
+function Turt.goToStart(x,y,z)
    local x1,y1,z1 = gps.locate()
    if x1 == x and y1 == y and z1 == z then
         print("Here")
    else
-
-
-
-
-
         goX(x,y,z)
         while(x ~= x1 and turtle.forward()) do
             turtle.forward()
@@ -78,14 +74,15 @@ function goToStart(x,y,z)
             goY(x,y,z)
             end
         end
-        goY(x,y,z)
         goZ(x,y,z)
-        while(z ~= z1) do
+        while(z ~= z1 and turtle.forward()) do
             turtle.forward()
             x1,y1,z1 = gps.locate()
+            if(not turtle.forward()) then
+                goY(x,y,z)
+            end
         end
+        goY(x,y,z)
+       
     end
 end
-
-local x,y,z = gps.locate()
-goToStart(x,y,z)
